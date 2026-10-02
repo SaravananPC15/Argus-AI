@@ -1,0 +1,47 @@
+# --- Personal data / accumulated state (never commit these) ---
+argus_vault.db
+memory.json
+nexus_graph.json
+macros.json
+mcp_servers.json
+harvest_targets.json
+harvest_vault/
+power_state.json
+argus_supervisor.pid
+launcher_secrets.json
+feature_toggles.json
+documents/
+audio_cache/
+secure_vault/
+argus_docs.faiss
+argus_docs_texts.npy
+
+# --- Secrets: these should ONLY ever exist as environment variables,
+# never as files -- this is a second line of defense, not the primary
+# control, since the primary control is "never write them to a file
+# at all" (see launcher_listener.py / graph_sync.py's own docstrings)
+.env
+*.pem
+*.key
+
+# --- Large model binaries -- exceed or approach GitHub's file-size
+# comfort zone, and don't belong in git history regardless of size.
+# Document a separate download step instead (see SETUP.md).
+pretrained_models/
+yolov8n.pt
+*.pt
+*.faiss
+
+# --- Standard Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

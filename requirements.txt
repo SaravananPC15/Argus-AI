@@ -1,0 +1,93 @@
+# Argus — Python dependencies
+# Install with: pip install -r requirements.txt
+#
+# NOTE: This project also requires a locally running Ollama server
+# (https://ollama.com) with the models pulled — see SETUP.md.
+
+# --- Web server / remote uplink (remote_server.py) ---
+fastapi
+uvicorn
+python-multipart          # required by FastAPI's Form(...)/File(...) handling
+pydub
+
+# --- LLM / AI orchestration ---
+ollama
+
+# --- Audio: speech-to-text, text-to-speech ---
+openai-whisper
+torch
+soundfile
+SpeechRecognition
+pyttsx3
+pyaudio                   # needs PortAudio installed at the OS level first
+
+# --- Vision ---
+opencv-python
+ultralytics                # YOLOv8
+Pillow
+
+# --- Documents / RAG ---
+PyMuPDF                    # imported as `fitz`
+PyPDF2
+python-docx                 # imported as `docx`
+faiss-cpu
+sentence-transformers
+fpdf2                       # imported as `fpdf`
+
+# --- Web search / scraping / browser automation ---
+ddgs                        # replacement for the deprecated duckduckgo_search
+requests
+beautifulsoup4
+playwright                  # after installing, also run: playwright install chromium
+
+# --- System / automation / OS control ---
+psutil
+pyautogui
+pyperclip
+pywhatkit
+schedule
+watchdog
+AppOpener
+GitPython                   # imported as `git`
+aiosqlite
+
+# --- Dashboard ---
+streamlit
+
+# --- Voice-based user recognition (Feature 7) ---
+speechbrain                # powers voice_id.py's speaker verification (spkrec-ecapa-voxceleb)
+
+# --- New Protocols ---
+bleak                       # Protocol Castellan: cross-platform Bluetooth LE scanning
+keyboard                    # Protocol Smart Dictation: global hotkey listener
+Faker                       # Protocol Dataset Synth: bulk mock data generation
+feedparser                  # Protocol RSS Aggregator: RSS/Atom parsing
+autopep8                    # Protocol Syntax Guardian: auto-formatting
+pycodestyle                 # Protocol Syntax Guardian: lint reporting
+
+# --- New Protocols (this pass) ---
+numpy                       # Flash-Attention Emulation, Acoustic Data Link -- used directly, not just transitively
+mediapipe                   # Zero-G Visual Controls: hand gesture recognition (Tasks API -- needs a downloaded
+                             # model file too, see SETUP.md; do NOT expect the old mp.solutions.hands API)
+cryptography                # Peer-to-Peer Graph Sync: Fernet encryption for synced graph chunks
+sounddevice                 # Acoustic Data Link: mic/speaker I/O -- needs PortAudio installed at the OS level,
+                             # same prerequisite pyaudio already has above
+mcp                         # MCP Tool Bridge: official Model Context Protocol Python SDK (client side only).
+                             # NOTE: this specific integration (mcp_bridge.py) could not be run against a real
+                             # MCP server before delivery -- test it against one real server yourself before
+                             # relying on it. See mcp_bridge.py's module docstring for exactly what WAS tested.
+# NOTE: Shadow Sandbox Execution's Docker path uses the `docker` CLI directly via subprocess,
+# not the python `docker` package -- install Docker Desktop/Engine itself if you want that path;
+# no extra pip package needed, and the subprocess-based fallback works either way (see sandbox.py).
+
+# --- Windows-only (see SETUP.md) ---
+# winshell and pywin32 are required by hands.py's recycle-bin feature
+# and by tactical_hud.py's click-through window trick.
+# Only install these if you are on Windows.
+winshell; sys_platform == "win32"
+pywin32; sys_platform == "win32"
+
+anthropic                    # Frontier Escalation ONLY -- the one protocol that calls a real cloud API.
+                              # Off by default; only needed if you turn Protocol Frontier Escalation on.
+                              # Needs your own ANTHROPIC_API_KEY (same env var the official SDK already
+                              # looks for) and has a real per-use cost, unlike everything else here.
